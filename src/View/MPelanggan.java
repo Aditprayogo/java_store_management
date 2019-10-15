@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.Controller_Pelanggan;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -18,9 +19,14 @@ public class MPelanggan extends javax.swing.JFrame {
     /**
      * Creates new form MPelanggan
      */
+    Controller_Pelanggan controller;
+    
     public MPelanggan() {
         initComponents();
         setLocationRelativeTo(this);
+        controller = new Controller_Pelanggan(this);
+        controller.isiTable();
+        
         
     }
 
@@ -107,6 +113,11 @@ public class MPelanggan extends javax.swing.JFrame {
                 txtkdplgActionPerformed(evt);
             }
         });
+        txtkdplg.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtkdplgKeyReleased(evt);
+            }
+        });
 
         txtnmplg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,13 +146,33 @@ public class MPelanggan extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblplg.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblplgMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tblplg);
 
         cmdsimpan.setText("Simpan");
+        cmdsimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdsimpanActionPerformed(evt);
+            }
+        });
 
         cmdubah.setText("Ubah");
+        cmdubah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdubahActionPerformed(evt);
+            }
+        });
 
         cmdhapus.setText("Hapus");
+        cmdhapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdhapusActionPerformed(evt);
+            }
+        });
 
         cmdbatal.setText("Batal");
         cmdbatal.addActionListener(new java.awt.event.ActionListener() {
@@ -241,7 +272,38 @@ public class MPelanggan extends javax.swing.JFrame {
 
     private void cmdbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdbatalActionPerformed
         // TODO add your handling code here:
+            controller.reset();
     }//GEN-LAST:event_cmdbatalActionPerformed
+
+    private void cmdsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdsimpanActionPerformed
+          controller.insert();
+          controller.isiTable();
+          controller.reset();
+    }//GEN-LAST:event_cmdsimpanActionPerformed
+
+    private void cmdubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdubahActionPerformed
+        // TODO add your handling code here:
+        controller.update();
+        controller.isiTable();
+        controller.reset();
+    }//GEN-LAST:event_cmdubahActionPerformed
+
+    private void cmdhapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdhapusActionPerformed
+        // TODO add your handling code here:
+        controller.delete();
+        controller.isiTable();
+        controller.reset();
+    }//GEN-LAST:event_cmdhapusActionPerformed
+
+    private void tblplgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblplgMouseClicked
+        // TODO add your handling code here:
+        controller.isiField(tblplg.getSelectedRow());
+    }//GEN-LAST:event_tblplgMouseClicked
+
+    private void txtkdplgKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtkdplgKeyReleased
+        // TODO add your handling code here:
+        controller.isiTableCari();
+    }//GEN-LAST:event_txtkdplgKeyReleased
 
     /**
      * @param args the command line arguments

@@ -180,6 +180,7 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtkdplgActionPerformed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtkdplgKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtnmplg">
@@ -225,6 +226,9 @@
               </Table>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblplgMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -232,16 +236,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Simpan"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdsimpanActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="cmdubah">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ubah"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdubahActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="cmdhapus">
       <Properties>
         <Property name="text" type="java.lang.String" value="Hapus"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdhapusActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="cmdbatal">
       <Properties>
