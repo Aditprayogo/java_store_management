@@ -10,14 +10,14 @@ package Model;
  * @author LENOVO
  */
 public class Kategori {
-    private Integer kode;
+    private String kode;
     private String nama;
 
-    public Integer getKode() {
+    public String getKode() {
         return kode;
     }
 
-    public void setKode(Integer kode) {
+    public void setKode(String kode) {
         this.kode = kode;
     }
 

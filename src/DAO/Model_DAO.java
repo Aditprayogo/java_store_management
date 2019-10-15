@@ -10,6 +10,7 @@ package DAO;
  * @author LENOVO
  */
 
+import Model.Kategori;
 import java.util.List;
 
 public interface Model_DAO <A> {
@@ -18,4 +19,7 @@ public interface Model_DAO <A> {
     public void delete(String id);
     public List<A> getALl();
     public List<A> getCari(String key);
+    public int autonumber(A object);
+
+    
 }

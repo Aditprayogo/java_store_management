@@ -257,6 +257,9 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void MKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MKategoriActionPerformed
         // TODO add your handling code here:
+         View.MKategoriBarang P = new View.MKategoriBarang();
+         P.setVisible(true);
+         setLocationRelativeTo(this);
     }//GEN-LAST:event_MKategoriActionPerformed
 
     private void MBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MBarangActionPerformed

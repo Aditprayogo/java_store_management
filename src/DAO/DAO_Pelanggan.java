@@ -177,5 +177,10 @@ public class DAO_Pelanggan implements Model_DAO<Pelanggan>{
         
         return list;
     }
+
+    @Override
+    public int autonumber(Pelanggan object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

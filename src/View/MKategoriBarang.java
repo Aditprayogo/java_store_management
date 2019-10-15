@@ -5,6 +5,8 @@
  */
 package View;
 
+import Controller.Controller_Kategori;
+import com.sun.glass.events.KeyEvent;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -17,9 +19,15 @@ public class MKategoriBarang extends javax.swing.JFrame {
     /**
      * Creates new form MKategoriBarang
      */
+    Controller_Kategori controller;
+    
+    
     public MKategoriBarang() {
         initComponents();
         setLocationRelativeTo(this);
+        controller = new Controller_Kategori(this);
+        controller.isiTable();
+        controller.reset();
         
     }
 
@@ -70,14 +78,48 @@ public class MKategoriBarang extends javax.swing.JFrame {
                 txtkdkategoriActionPerformed(evt);
             }
         });
+        txtkdkategori.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtkdkategoriKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtkdkategoriKeyReleased(evt);
+            }
+        });
+
+        txtnmkategori.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtnmkategoriKeyPressed(evt);
+            }
+        });
 
         cmdsimpan.setText("Simpan");
+        cmdsimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdsimpanActionPerformed(evt);
+            }
+        });
 
         cmdubah.setText("Ubah");
+        cmdubah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdubahActionPerformed(evt);
+            }
+        });
 
         cmdhapus.setText("Hapus");
+        cmdhapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdhapusActionPerformed(evt);
+            }
+        });
 
         cmdbatal.setText("Batal");
+        cmdbatal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdbatalActionPerformed(evt);
+            }
+        });
 
         tblkategori.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -90,6 +132,11 @@ public class MKategoriBarang extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblkategori.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblkategoriMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblkategori);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -154,6 +201,62 @@ public class MKategoriBarang extends javax.swing.JFrame {
     private void txtkdkategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtkdkategoriActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtkdkategoriActionPerformed
+
+    private void cmdsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdsimpanActionPerformed
+        // TODO add your handling code here:
+        controller.insert();
+        controller.reset();
+    }//GEN-LAST:event_cmdsimpanActionPerformed
+
+    private void cmdubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdubahActionPerformed
+        // TODO add your handling code here:
+        controller.update();
+        controller.reset();
+    }//GEN-LAST:event_cmdubahActionPerformed
+
+    private void cmdhapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdhapusActionPerformed
+        // TODO add your handling code here:
+        controller.delete();
+        controller.reset();
+    }//GEN-LAST:event_cmdhapusActionPerformed
+
+    private void cmdbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdbatalActionPerformed
+        // TODO add your handling code here:
+        controller.reset();
+    }//GEN-LAST:event_cmdbatalActionPerformed
+
+    private void tblkategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblkategoriMouseClicked
+        // TODO add your handling code here:
+        controller.isiField(tblkategori.getSelectedRow());
+        this.txtkdkategori.requestFocus();
+    }//GEN-LAST:event_tblkategoriMouseClicked
+
+    private void txtkdkategoriKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtkdkategoriKeyReleased
+        // TODO add your handling code here:
+        controller.isiTableCari();
+    }//GEN-LAST:event_txtkdkategoriKeyReleased
+
+    private void txtkdkategoriKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtkdkategoriKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            controller.reset();
+           
+        } else {
+            
+            controller.isiTable();
+            this.txtnmkategori.requestFocus();
+            
+        }
+    }//GEN-LAST:event_txtkdkategoriKeyPressed
+
+    private void txtnmkategoriKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnmkategoriKeyPressed
+        // TODO add your handling code here:
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+           
+             this.cmdsimpan.requestFocus();
+           
+        } 
+    }//GEN-LAST:event_txtnmkategoriKeyPressed
 
     /**
      * @param args the command line arguments

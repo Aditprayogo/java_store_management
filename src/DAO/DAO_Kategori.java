@@ -42,18 +42,23 @@ public class DAO_Kategori implements Model_DAO<Kategori>{
         PreparedStatement statement = null;
         
         try {
+            
             statement = connection.prepareStatement(CARI);
-            statement.setInt(1, object.getKode());
+            statement.setString(1, object.getKode());
             ResultSet rs = statement.executeQuery();
             
             if (rs.next()) {
+                
                 JOptionPane.showMessageDialog(null, "Data Sudah Pernah Di simpan");
                 
             } else {
+                
                 PreparedStatement statement2 = null;
                 statement2 = connection.prepareStatement(INSERT);
-                statement2.setInt(1, object.getKode());
+                statement2.setString(1, object.getKode());
                 statement2.setString(2, object.getNama());
+                statement2.executeUpdate();
+                
             }
             
                       
@@ -84,7 +89,7 @@ public class DAO_Kategori implements Model_DAO<Kategori>{
             
              statement  = connection.prepareStatement(UPDATE);
              statement.setString(1, object.getNama());
-             statement.setInt(2, object.getKode());
+             statement.setString(2, object.getKode());
              statement.executeUpdate();
              JOptionPane.showMessageDialog(null, "Data Berhasil Di Ubah");
              
@@ -155,7 +160,7 @@ public class DAO_Kategori implements Model_DAO<Kategori>{
             
             while (rs.next()) {                
                 Kategori k = new Kategori();
-                k.setKode(rs.getInt("KdKategori"));
+                k.setKode(rs.getString("KdKategori"));
                 k.setNama(rs.getString("NmKategori"));
                 list.add(k);
             }
@@ -186,7 +191,7 @@ public class DAO_Kategori implements Model_DAO<Kategori>{
             
             while (rs.next()) {                
                 Kategori k = new Kategori();
-                k.setKode(rs.getInt("KdKategori"));
+                k.setKode(rs.getString("KdKategori"));
                 k.setNama(rs.getString("NmKategori"));
                 list.add(k);
             }
@@ -202,7 +207,7 @@ public class DAO_Kategori implements Model_DAO<Kategori>{
         
     }
     
-    
+    @Override
     public int autonumber(Kategori object) {
         
         PreparedStatement statement = null;
