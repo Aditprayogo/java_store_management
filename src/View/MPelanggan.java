@@ -5,6 +5,10 @@
  */
 package View;
 
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 /**
  *
  * @author LENOVO
@@ -16,6 +20,28 @@ public class MPelanggan extends javax.swing.JFrame {
      */
     public MPelanggan() {
         initComponents();
+        setLocationRelativeTo(this);
+        
+    }
+
+    public JTable getTblplg() {
+        return tblplg;
+    }
+
+    public JTextArea getTxtalamat() {
+        return txtalamat;
+    }
+
+    public JTextField getTxtkdplg() {
+        return txtkdplg;
+    }
+
+    public JTextField getTxtnmplg() {
+        return txtnmplg;
+    }
+
+    public JTextField getTxttelp() {
+        return txttelp;
     }
 
     /**
