@@ -58,6 +58,7 @@ public class DAO_Kategori implements Model_DAO<Kategori>{
                 statement2.setString(1, object.getKode());
                 statement2.setString(2, object.getNama());
                 statement2.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Data Berhasil Di tambah");
                 
             }
             
@@ -124,6 +125,7 @@ public class DAO_Kategori implements Model_DAO<Kategori>{
             statement = connection.prepareStatement(DELETE);
             statement.setString(1, id);
             statement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data Berhasil Di hapus");
             
             
         } catch (Exception e) {

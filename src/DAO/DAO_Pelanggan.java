@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -44,6 +45,7 @@ public class DAO_Pelanggan implements Model_DAO<Pelanggan>{
             statement.setString(3, object.getAlamat());
             statement.setString(4, object.getTelp());
             statement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data Berhasil Di tambah");
                     
         } catch (Exception e) {
             
@@ -72,6 +74,7 @@ public class DAO_Pelanggan implements Model_DAO<Pelanggan>{
             statement.setString(3, object.getAlamat());
             statement.setString(4, object.getTelp());
             statement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data Berhasil Di ubah");
                     
         } catch (Exception e) {
             
@@ -98,6 +101,7 @@ public class DAO_Pelanggan implements Model_DAO<Pelanggan>{
             statement = connection.prepareStatement(DELETE);
             statement.setString(1, kode);
             statement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data Berhasil Di hapus");
                     
         } catch (Exception e) {
             
