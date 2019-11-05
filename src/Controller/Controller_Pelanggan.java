@@ -55,6 +55,7 @@ public class Controller_Pelanggan {
     public void insert() {
         
         Pelanggan p = new Pelanggan();
+        
         p.setKode(form.getTxtkdplg().getText());
         p.setNama(form.getTxtnmplg().getText());
         p.setAlamat(form.getTxtalamat().getText());
@@ -67,6 +68,7 @@ public class Controller_Pelanggan {
     public void update() {
         
         Pelanggan p = new Pelanggan();
+        
         p.setKode(form.getTxtkdplg().getText());
         p.setNama(form.getTxtnmplg().getText());
         p.setAlamat(form.getTxtalamat().getText());
