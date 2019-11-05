@@ -32,6 +32,7 @@ public class Controller_Pelanggan {
         form.getTxtkdplg().setText("");
         form.getTxtnmplg().setText("");
         form.getTxtalamat().setText("");
+//        
         form.getTxttelp().setText("");
     }
     

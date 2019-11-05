@@ -48,6 +48,7 @@ public class Controller_Kategori {
         
         form.getTxtkdkategori().setText("");
 //        
+//
         form.getTxtnmkategori().setText("");
         form.getTxtnmkategori().requestFocus();
         tampilurutankode();
