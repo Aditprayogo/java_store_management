@@ -73,11 +73,12 @@ public class DAO_Petugas implements Model_DAO<Petugas>{
         
         try {
             statement = connection.prepareStatement(UPDATE);
-            statement.setString(1, object.getKode());
-            statement.setString(2, object.getNama());
-            statement.setString(3, object.getAlamat());
-            statement.setString(4, object.getTelepon());
+            statement.setString(1, object.getNama());
+            statement.setString(2, object.getAlamat());
+            statement.setString(3, object.getTelepon());
+            statement.setString(4, object.getKode());
             statement.executeUpdate();
+            
             JOptionPane.showMessageDialog(null, "Data Berhasil Di ubah");
                     
         } catch (Exception e) {
@@ -91,7 +92,7 @@ public class DAO_Petugas implements Model_DAO<Petugas>{
                 
             } catch (SQLException ex) {
                 
-                Logger.getLogger(DAO_Pelanggan.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DAO_Petugas.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

@@ -70,10 +70,11 @@ public class DAO_Pelanggan implements Model_DAO<Pelanggan>{
         
         try {
             statement = connection.prepareStatement(UPDATE);
-            statement.setString(1, object.getKode());
-            statement.setString(2, object.getNama());
-            statement.setString(3, object.getAlamat());
-            statement.setString(4, object.getTelp());
+            statement.setString(1, object.getNama());
+            statement.setString(2, object.getAlamat());
+            statement.setString(3, object.getTelp());
+            statement.setString(4, object.getKode());
+  
             statement.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data Berhasil Di ubah");
                     

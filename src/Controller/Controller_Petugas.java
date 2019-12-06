@@ -17,6 +17,7 @@ import View.MPelanggan;
 import View.MPetugas;
 import java.awt.Color;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -49,5 +50,60 @@ public class Controller_Petugas {
         form.getTblpetugas().setModel(tablePetugas);
         
     }
+       
+     public void isiField(int row){
+        
+        form.getTxtkdpetugas().setText(String.valueOf(list.get(row).getKode()));
+        form.getTxtnmpetugas().setText(list.get(row).getNama());
+        form.getTxtalamat().setText(list.get(row).getAlamat());
+        form.getTxttelp().setText(list.get(row).getTelepon());
+        
+    }
+     
+    public void insert() {
+        
+        Petugas p = new Petugas();
+        p.setKode(form.getTxtkdpetugas().getText());
+        p.setNama(form.getTxtnmpetugas().getText());
+        p.setAlamat(form.getTxtalamat().getText());
+        p.setTelepon(form.getTxttelp().getText());
+        
+        model.insert(p);
+        
+    }
+    
+    public void update() {
+        
+        Petugas p = new Petugas();
+        
+        p.setKode(form.getTxtkdpetugas().getText());
+        p.setNama(form.getTxtnmpetugas().getText());
+        p.setAlamat(form.getTxtalamat().getText());
+        p.setTelepon(form.getTxttelp().getText());
+        
+        model.update(p);
+        
+    }
+    
+    public void delete() {
+        if (!form.getTxtkdpetugas().getText().trim().isEmpty()) {
+            
+            String kode = (form.getTxtkdpetugas().getText());
+            model.delete(kode);
+            
+        } else {
+            
+            JOptionPane.showMessageDialog(form, "Pilih Data yang akan di hapus");
+            
+        }
+    }
+    
+    public void isiTableCari() {
+        list = model.getCari(form.getTxtkdpetugas().getText().trim());
+        TableModel_Petugas tablePetugas = new TableModel_Petugas(list);
+        form.getTblpetugas().setModel(tablePetugas);
+    }
+    
+    
     
 }

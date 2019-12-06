@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.Controller_Petugas;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -18,9 +19,13 @@ public class MPetugas extends javax.swing.JFrame {
     /**
      * Creates new form MPetugas
      */
+    Controller_Petugas controller;
+    
     public MPetugas() {
         initComponents();
         setLocationRelativeTo(this);
+        controller = new Controller_Petugas(this);
+        controller.isiTable();
     }
 
     public JTable getTblpetugas() {
@@ -83,6 +88,12 @@ public class MPetugas extends javax.swing.JFrame {
 
         jLabel2.setText("Kode Petugas : ");
 
+        txtkdpetugas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtkdpetugasKeyReleased(evt);
+            }
+        });
+
         jLabel3.setText("Nama Petugas : ");
 
         jLabel4.setText("Alamat : ");
@@ -94,12 +105,32 @@ public class MPetugas extends javax.swing.JFrame {
         jLabel5.setText("No Telepon : ");
 
         cmdsimpan.setText("Simpan");
+        cmdsimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdsimpanActionPerformed(evt);
+            }
+        });
 
         cmdubah.setText("Ubah");
+        cmdubah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdubahActionPerformed(evt);
+            }
+        });
 
         cmdhapus.setText("Hapus");
+        cmdhapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdhapusActionPerformed(evt);
+            }
+        });
 
         cmdbatal.setText("Batal");
+        cmdbatal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdbatalActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Kata Kunci Pencarian :");
 
@@ -120,6 +151,11 @@ public class MPetugas extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblpetugas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblpetugasMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblpetugas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -206,6 +242,45 @@ public class MPetugas extends javax.swing.JFrame {
     private void txtkatakunciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtkatakunciActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtkatakunciActionPerformed
+
+    private void cmdsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdsimpanActionPerformed
+        // TODO add your handling code here:
+        controller.insert();
+        controller.isiTable();
+        controller.reset();
+    }//GEN-LAST:event_cmdsimpanActionPerformed
+
+    private void cmdubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdubahActionPerformed
+        // TODO add your handling code here:
+        controller.update();
+        controller.isiTable();
+        controller.reset();
+    }//GEN-LAST:event_cmdubahActionPerformed
+
+    private void cmdhapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdhapusActionPerformed
+        // TODO add your handling code here:
+        controller.delete();
+        controller.isiTable();
+        controller.reset();
+    }//GEN-LAST:event_cmdhapusActionPerformed
+
+    private void cmdbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdbatalActionPerformed
+        // TODO add your handling code here:
+        
+        controller.reset();
+
+    }//GEN-LAST:event_cmdbatalActionPerformed
+
+    private void tblpetugasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblpetugasMouseClicked
+        // TODO add your handling code here:
+        controller.isiField(tblpetugas.getSelectedRow());
+    }//GEN-LAST:event_tblpetugasMouseClicked
+
+    private void txtkdpetugasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtkdpetugasKeyReleased
+        // TODO add your handling code here:
+        controller.isiTableCari();
+        
+    }//GEN-LAST:event_txtkdpetugasKeyReleased
 
     /**
      * @param args the command line arguments

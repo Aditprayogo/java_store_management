@@ -291,6 +291,9 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void MPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MPetugasActionPerformed
         // TODO add your handling code here:
+         View.MPetugas P = new View.MPetugas();
+         P.setVisible(true);
+         setLocationRelativeTo(this);
     }//GEN-LAST:event_MPetugasActionPerformed
 
     /**
