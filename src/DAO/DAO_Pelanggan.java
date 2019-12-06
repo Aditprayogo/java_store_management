@@ -33,6 +33,7 @@ public class DAO_Pelanggan implements Model_DAO<Pelanggan>{
     String DELETE = "DELETE FROM pelanggan WHERE KdPlg=?";
     String SELECT = "SELECT * FROM pelanggan";
     String CARI = "SELECT * FROM pelanggan WHERE NmPlg LIKE ? OR AlamatPlg LIKE ? OR KdPlg LIKE ?";
+    String COUNTER = "SELECT max(KdPlg) as kode FROM pelanggan";
 
     @Override
     public void insert(Pelanggan object) {
@@ -155,7 +156,7 @@ public class DAO_Pelanggan implements Model_DAO<Pelanggan>{
         
         try {
             
-            list = new ArrayList<Pelanggan>();
+            list = new ArrayList<>();
             statement.setString(1, "%"+key+"%");
             statement.setString(2, "%"+key+"%");
             statement.setString(3, "%"+key+"%");
@@ -184,7 +185,26 @@ public class DAO_Pelanggan implements Model_DAO<Pelanggan>{
 
     @Override
     public int autonumber(Pelanggan object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         PreparedStatement statement = null;
+        int nomor = 0;
+        
+        try {
+            
+            statement = connection.prepareStatement(COUNTER);
+            ResultSet rs = statement.executeQuery();
+            
+            if (rs.next()) {
+                nomor = rs.getInt("Kode")+1;
+            }
+           
+            
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            
+        }
+        
+        return nomor;
     }
     
 }

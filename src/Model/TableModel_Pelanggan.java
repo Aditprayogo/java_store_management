@@ -15,6 +15,7 @@ import javax.swing.table.AbstractTableModel;
 public class TableModel_Pelanggan extends AbstractTableModel{
     
     List<Pelanggan> list;
+    
     public TableModel_Pelanggan(List<Pelanggan> list){
         this.list = list;
     }
