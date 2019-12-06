@@ -6,10 +6,14 @@
 package Controller;
 
 import DAO.DAO_Kategori;
+import DAO.DAO_Pelanggan;
 import DAO.DAO_Petugas;
 import DAO.Model_DAO;
 import Model.Petugas;
+import Model.TableModel_Pelanggan;
+import Model.TableModel_Petugas;
 import View.MKategoriBarang;
+import View.MPelanggan;
 import View.MPetugas;
 import java.awt.Color;
 import java.util.List;
@@ -25,15 +29,25 @@ public class Controller_Petugas {
     List<Petugas> list;
     String[] header;
     
-    public Controller_Petugas (MPetugas form) {
+    public Controller_Petugas(MPetugas form){
         this.form = form;
         model = new DAO_Petugas();
         list = model.getALl();
-        header = new String[]{"KODE PETUGAS", "NAMA PETUGAS"};
+    }
+    
+     public void reset(){
+        form.getTxtkdpetugas().setText("");
+        form.getTxtnmpetugas().setText("");
+        form.getTxtalamat().setText("");
+        form.getTxttelp().setText("");
+    }
+     
+       public void isiTable() {
         
-        form.getTblpetugas().setShowGrid(true);
-        form.getTblpetugas().setShowVerticalLines(true);
-        form.getTblpetugas().setGridColor(Color.blue);
+        list = model.getALl();
+        TableModel_Petugas tablePetugas = new TableModel_Petugas(list);
+        form.getTblpetugas().setModel(tablePetugas);
+        
     }
     
 }
