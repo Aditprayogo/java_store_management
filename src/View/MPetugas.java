@@ -5,6 +5,10 @@
  */
 package View;
 
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 /**
  *
  * @author LENOVO
@@ -17,6 +21,30 @@ public class MPetugas extends javax.swing.JFrame {
     public MPetugas() {
         initComponents();
         setLocationRelativeTo(this);
+    }
+
+    public JTable getTblpetugas() {
+        return tblpetugas;
+    }
+
+    public JTextArea getTxtalamat() {
+        return txtalamat;
+    }
+
+    public JTextField getTxtkatakunci() {
+        return txtkatakunci;
+    }
+
+    public JTextField getTxtkdpetugas() {
+        return txtkdpetugas;
+    }
+
+    public JTextField getTxtnmpetugas() {
+        return txtnmpetugas;
+    }
+
+    public JTextField getTxttelp() {
+        return txttelp;
     }
 
     /**
