@@ -5,7 +5,10 @@
  */
 package View;
 
+import Controller.Controller_Barang;
+import java.awt.event.KeyEvent;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -18,9 +21,15 @@ public class MBarang extends javax.swing.JFrame {
     /**
      * Creates new form MBarang
      */
+    
+    Controller_Barang controller;
+    
     public MBarang() {
         initComponents();
         setLocationRelativeTo(this);
+        controller = new Controller_Barang(this);
+        controller.reset();
+       
     }
 
     public JComboBox<String> getCmbkategori() {
@@ -117,6 +126,11 @@ public class MBarang extends javax.swing.JFrame {
         jLabel2.setText("Kode kategori :");
 
         cmbkategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--PILIH-" }));
+        cmbkategori.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbkategoriItemStateChanged(evt);
+            }
+        });
         cmbkategori.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbkategoriActionPerformed(evt);
@@ -129,15 +143,63 @@ public class MBarang extends javax.swing.JFrame {
 
         jLabel5.setText("Nama Barang : ");
 
+        txtnmbarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnmbarangActionPerformed(evt);
+            }
+        });
+        txtnmbarang.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtnmbarangKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtnmbarangKeyReleased(evt);
+            }
+        });
+
         jLabel6.setText("Satuan :");
 
-        cmbsatuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--PILIH--" }));
+        cmbsatuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--PILIH--", "1", "2", "3", "4", "5", "6", " " }));
+        cmbsatuan.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbsatuanItemStateChanged(evt);
+            }
+        });
+        cmbsatuan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cmbsatuanKeyPressed(evt);
+            }
+        });
 
         jLabel7.setText("Harga (Rp.) ");
 
+        txtharga.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txthargaKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txthargaKeyReleased(evt);
+            }
+        });
+
         jLabel8.setText("Stock :");
 
+        txtstock.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtstockKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtstockKeyReleased(evt);
+            }
+        });
+
         jLabel9.setText("Kata Kunci : ");
+
+        txtkatakunci.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtkatakunciKeyReleased(evt);
+            }
+        });
 
         tblbarang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -150,6 +212,11 @@ public class MBarang extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblbarang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblbarangMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblbarang);
 
         cmdsimpan.setText("Simpan");
@@ -160,10 +227,25 @@ public class MBarang extends javax.swing.JFrame {
         });
 
         cmdubah.setText("Ubah");
+        cmdubah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdubahActionPerformed(evt);
+            }
+        });
 
         cmdhapus.setText("Hapus");
+        cmdhapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdhapusActionPerformed(evt);
+            }
+        });
 
         cmdbatal.setText("Batal");
+        cmdbatal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdbatalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -196,19 +278,17 @@ public class MBarang extends javax.swing.JFrame {
                                     .addComponent(txtkdbarang, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                                     .addComponent(txtnmbarang)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtharga))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cmbsatuan, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtharga, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel8)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtstock, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)))
+                                .addComponent(txtstock, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(cmbsatuan, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cmdubah)
@@ -249,8 +329,8 @@ public class MBarang extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(cmbsatuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmdbatal))
+                    .addComponent(cmdbatal)
+                    .addComponent(cmbsatuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -275,7 +355,115 @@ public class MBarang extends javax.swing.JFrame {
 
     private void cmdsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdsimpanActionPerformed
         // TODO add your handling code here:
+        controller.insert();
+        controller.reset();
     }//GEN-LAST:event_cmdsimpanActionPerformed
+
+    private void cmdubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdubahActionPerformed
+        // TODO add your handling code here:
+        controller.update();
+        controller.reset();
+    }//GEN-LAST:event_cmdubahActionPerformed
+
+    private void cmdhapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdhapusActionPerformed
+        // TODO add your handling code here:
+        controller.delete();
+        controller.reset();
+    }//GEN-LAST:event_cmdhapusActionPerformed
+
+    private void cmdbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdbatalActionPerformed
+        // TODO add your handling code here:
+        controller.reset();
+    }//GEN-LAST:event_cmdbatalActionPerformed
+
+    private void tblbarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblbarangMouseClicked
+        // TODO add your handling code here:
+        controller.isiField(tblbarang.getSelectedRow());
+        this.txtnmbarang.requestFocus();
+    }//GEN-LAST:event_tblbarangMouseClicked
+
+    private void cmbkategoriItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbkategoriItemStateChanged
+        // TODO add your handling code here:
+        if (getCmbkategori().getSelectedIndex() > 0) {
+            
+            controller.tampilurutkode();
+            controller.tampilnamakategori();
+            txtnmbarang.requestFocus();
+            
+        }
+    }//GEN-LAST:event_cmbkategoriItemStateChanged
+
+    private void txtnmbarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnmbarangActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtnmbarangActionPerformed
+
+    private void txtnmbarangKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnmbarangKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnmbarangKeyReleased
+
+    private void txtnmbarangKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnmbarangKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.cmbsatuan.requestFocus();
+        }
+    }//GEN-LAST:event_txtnmbarangKeyPressed
+
+    private void cmbsatuanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbsatuanKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.txtharga.requestFocus();
+        }
+    }//GEN-LAST:event_cmbsatuanKeyPressed
+
+    private void txthargaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txthargaKeyPressed
+        // TODO add your handling code here:
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.txtstock.requestFocus();
+        }
+    }//GEN-LAST:event_txthargaKeyPressed
+
+    private void txthargaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txthargaKeyReleased
+        // TODO add your handling code here:
+        char karakter = evt.getKeyChar();
+        if (!(((karakter >= '0') && (karakter <= '9') || (karakter == KeyEvent.VK_BACK_SPACE) || (karakter == KeyEvent.VK_DELETE) || (karakter == KeyEvent.VK_ENTER)))) {
+            
+            JOptionPane.showMessageDialog(null, "Data Yang Di inputkan harus berupa angka");
+            
+        }
+    }//GEN-LAST:event_txthargaKeyReleased
+
+    private void txtstockKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtstockKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.txtstock.requestFocus();
+        }
+    }//GEN-LAST:event_txtstockKeyPressed
+
+    private void txtstockKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtstockKeyReleased
+        // TODO add your handling code here:
+        char karakter = evt.getKeyChar();
+        if (!(((karakter >= '0') && (karakter <= '9') || (karakter == KeyEvent.VK_BACK_SPACE) || (karakter == KeyEvent.VK_DELETE) || (karakter == KeyEvent.VK_ENTER)))) {
+            
+            JOptionPane.showMessageDialog(null, "Data Yang Di inputkan harus berupa angka");
+            
+        }
+    }//GEN-LAST:event_txtstockKeyReleased
+
+    private void txtkatakunciKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtkatakunciKeyReleased
+        // TODO add your handling code here:
+        controller.isiTableCari();
+    }//GEN-LAST:event_txtkatakunciKeyReleased
+
+    private void cmbsatuanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbsatuanItemStateChanged
+        // TODO add your handling code here:
+        if (getCmbsatuan().getSelectedIndex() == 0) {
+            
+            controller.tampilurutkode();
+            controller.tampilnamakategori();
+            
+        }
+    }//GEN-LAST:event_cmbsatuanItemStateChanged
 
     /**
      * @param args the command line arguments

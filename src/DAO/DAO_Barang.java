@@ -30,14 +30,15 @@ public class DAO_Barang implements Model_DAO<Barang>{
     
     Connection connection;
     String INSERT = "INSERT INTO barang(KdBrg, NmBrg, Satuan, HargaBrg, Stok, KdKategori) values(?,?,?,?,?,?)";
-    String UPDATE = "UPDATE barang SET NmBrg=?, Satuan=?, HargaBrg=? , Stok=?, KdKategori=?  WHERE KdBrg=?";
+    String UPDATE = "UPDATE barang SET NmBrg=?,Satuan=?,HargaBrg=?,stok=?,KdKategori=? WHERE KdBrg=?";
     String DELETE = "DELETE FROM barang WHERE KdBrg=?";
-    String SELECT = "SELECT a.*, b.* FROM barang a, kategori b, WHERE a.KdKategori=b.KdKategori order by KdBrg";
-    String CARI = "SELECT a.*, b.* FROM barang a, kategori b, WHERE a.KdKategori=b.KdKategori and KdBrg LIKE ?";
+    String SELECT = "SELECT a.*, b.* FROM barang a, kategori b WHERE a.KdKategori=b.KdKategori order by KdBrg";
+    String CARI = "SELECT a.*, b.* FROM barang a, kategori b WHERE a.KdKategori=b.KdKategori and KdBrg LIKE ?";
     String CARIKATEGORI = "SELECT * FROM kategori WHERE KdKategori=?";
     String COMBO = "SELECT KdKategori FROM kategori order by convert(right(KdKategori,2),signed integer)";
-    String COUNTER = "SELECT ifnull(max(convert(right(KdBrg,2), signed integer)),0) as panjang "
-            + "ifnull(length(max(convert(rigth(KdBrg,2),signed integer))),0) as panjang"
+    
+    String COUNTER = "SELECT ifnull(max(convert(right(KdBrg,2),signed integer)),0) as kode,"
+            + "ifnull(length(max(convert(right(KdBrg,2),signed integer))),0)as panjang "
             + "from barang where KdKategori=?";
 
     @Override
@@ -58,7 +59,7 @@ public class DAO_Barang implements Model_DAO<Barang>{
                 statement2 = connection.prepareStatement(INSERT);
                 statement2.setString(1, object.getKodebarang());
                 statement2.setString(2, object.getNamabarang());
-                statement2.setString(3, object.getSatuan());
+                statement2.setInt(3, object.getSatuan());
                 statement2.setInt(4, object.getHarga());
                 statement2.setInt(5, object.getStock());
                 statement2.setInt(6, object.getKodekategori());
@@ -96,7 +97,7 @@ public class DAO_Barang implements Model_DAO<Barang>{
                 
                 statement = connection.prepareStatement(UPDATE);
                 statement.setString(1, object.getNamabarang());
-                statement.setString(2, object.getSatuan());
+                statement.setInt(2, object.getSatuan());
                 statement.setInt(3, object.getHarga());
                 statement.setInt(4, object.getStock());
                 statement.setInt(5, object.getKodekategori());
@@ -172,7 +173,7 @@ public class DAO_Barang implements Model_DAO<Barang>{
                Barang b = new Barang();
                b.setKodebarang(rs.getString("KdBrg"));
                b.setNamabarang(rs.getString("NmBrg"));
-               b.setSatuan(rs.getString("Satuan"));
+               b.setSatuan(rs.getInt("Satuan"));
                b.setHarga(rs.getInt("HargaBrg"));
                b.setStock(rs.getInt("Stok"));
                b.setKodekategori(rs.getInt("a.KdKategori"));
@@ -207,7 +208,7 @@ public class DAO_Barang implements Model_DAO<Barang>{
                 Barang b = new Barang();
                 b.setKodebarang(rs.getString("KdBrg"));
                 b.setNamabarang(rs.getString("NmBrg"));
-                b.setSatuan(rs.getString("Satuan"));
+                b.setSatuan(rs.getInt("Satuan"));
                 b.setHarga(rs.getInt("HargaBrg"));
                 b.setStock(rs.getInt("Stok"));
                 b.setKodekategori(rs.getInt("a.KdKategori"));
@@ -268,17 +269,17 @@ public class DAO_Barang implements Model_DAO<Barang>{
                     
                     if (rs2.getInt("panjang") == 1) { //jika jumlah digitnya adalah 1
                         
-                        urutan = "B" + id + "0" + nomor_berikutnya;
+                        urutan = "1" + id + "0" + nomor_berikutnya;
                         
                     } else if (rs2.getInt("panjang") == 2) {
                         
                         //jika jumlah digitnya adalah 2 
-                        urutan = "B" + id + nomor_berikutnya;
+                        urutan = "1" + id + nomor_berikutnya;
                     }
                     
                 } else { // jika kode kategori belum pernah ada 
                     
-                    urutan = "B" + id + "01";
+                    urutan = "1" + id + "01";
                     
                 }
                         

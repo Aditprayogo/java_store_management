@@ -14,7 +14,7 @@ public class Barang {
     private String namakategori;
     private String kodebarang;
     private String namabarang;
-    private String satuan;
+    private Integer satuan;
     private Integer harga;
     private Integer stock;
 
@@ -50,11 +50,11 @@ public class Barang {
         this.namabarang = namabarang;
     }
 
-    public String getSatuan() {
+    public Integer getSatuan() {
         return satuan;
     }
 
-    public void setSatuan(String satuan) {
+    public void setSatuan(Integer satuan) {
         this.satuan = satuan;
     }
 

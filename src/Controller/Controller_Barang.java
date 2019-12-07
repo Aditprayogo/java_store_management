@@ -120,9 +120,9 @@ public class Controller_Barang {
         Barang b = new Barang();
         b.setKodebarang(form.getTxtkdbarang().getText());
         b.setNamabarang(form.getTxtnmbarang().getText());
-        b.setSatuan(form.getCmbsatuan().getSelectedItem().toString());
-        b.setHarga(Integer.parseInt(form.getTxtharga().toString()));
-        b.setStock(Integer.parseInt(form.getTxtstock().toString()));
+        b.setSatuan(Integer.parseInt(form.getCmbsatuan().getSelectedItem().toString()));
+        b.setHarga(Integer.parseInt(form.getTxtharga().getText()));
+        b.setStock(Integer.parseInt(form.getTxtstock().getText()));
         b.setKodekategori(Integer.parseInt(form.getCmbkategori().getSelectedItem().toString()));
         model.insert(b);
         
@@ -133,9 +133,9 @@ public class Controller_Barang {
         Barang b = new Barang();
        
         b.setNamabarang(form.getTxtnmbarang().getText());
-        b.setSatuan(form.getCmbsatuan().getSelectedItem().toString());
-        b.setHarga(Integer.parseInt(form.getTxtharga().toString()));
-        b.setStock(Integer.parseInt(form.getTxtstock().toString()));
+        b.setSatuan(Integer.parseInt(form.getCmbsatuan().toString()));
+        b.setSatuan(Integer.parseInt(form.getCmbsatuan().getSelectedItem().toString()));
+        b.setStock(Integer.parseInt(form.getTxtstock().getText()));
         b.setKodekategori(Integer.parseInt(form.getCmbkategori().getSelectedItem().toString()));
         b.setKodebarang(form.getTxtkdbarang().getText());
         

@@ -216,6 +216,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="File Master"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MMenuActionPerformed"/>
+          </Events>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="MPelanggan">
               <Properties>

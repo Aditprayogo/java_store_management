@@ -165,6 +165,11 @@ public class MenuUtama extends javax.swing.JFrame {
 
         MMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Icon/1 - user.png"))); // NOI18N
         MMenu.setText("File Master");
+        MMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MMenuActionPerformed(evt);
+            }
+        });
 
         MPelanggan.setText("Entri Data Pelanggan");
         MPelanggan.addActionListener(new java.awt.event.ActionListener() {
@@ -275,6 +280,9 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void MBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MBarangActionPerformed
         // TODO add your handling code here:
+          View.MBarang b = new View.MBarang();
+         b.setVisible(true);
+         setLocationRelativeTo(this);
     }//GEN-LAST:event_MBarangActionPerformed
 
     private void LPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LPelangganActionPerformed
@@ -297,6 +305,11 @@ public class MenuUtama extends javax.swing.JFrame {
          P.setVisible(true);
          setLocationRelativeTo(this);
     }//GEN-LAST:event_MPetugasActionPerformed
+
+    private void MMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MMenuActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_MMenuActionPerformed
 
     /**
      * @param args the command line arguments
