@@ -308,10 +308,7 @@ public class MPetugas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtkdpetugasKeyReleased
 
     private void txtkatakunciKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtkatakunciKeyReleased
-        
-//        String query = txtkatakunci.getText().toLowerCase();
-//        
-//        filter(query);
+       
         controller.isiTableCari();
         
     }//GEN-LAST:event_txtkatakunciKeyReleased

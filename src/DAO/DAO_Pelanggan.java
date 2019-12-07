@@ -186,7 +186,7 @@ public class DAO_Pelanggan implements Model_DAO<Pelanggan>{
 
     @Override
     public int autonumber(Pelanggan object) {
-         PreparedStatement statement = null;
+        PreparedStatement statement = null;
         int nomor = 0;
         
         try {

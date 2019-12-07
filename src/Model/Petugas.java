@@ -13,6 +13,7 @@ public class Petugas {
     private String kode;
     private String nama;
     private String alamat;
+    private String telepon;
 
     public String getKode() {
         return kode;
@@ -45,7 +46,7 @@ public class Petugas {
     public void setTelepon(String telepon) {
         this.telepon = telepon;
     }
-    private String telepon;
+    
     
     
 }

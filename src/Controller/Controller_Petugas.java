@@ -9,6 +9,7 @@ import DAO.DAO_Kategori;
 import DAO.DAO_Pelanggan;
 import DAO.DAO_Petugas;
 import DAO.Model_DAO;
+import Model.Barang;
 import Model.Petugas;
 import Model.TableModel_Pelanggan;
 import Model.TableModel_Petugas;
@@ -101,9 +102,23 @@ public class Controller_Petugas {
     
     public void isiTableCari() {
         
-        list = model.getCari(form.getTxtkdpetugas().getText().trim());
-        TableModel_Petugas tablePetugas = new TableModel_Petugas(list);
-        form.getTblpetugas().setModel(tablePetugas);
+        list = model.getCari(form.getTxtkatakunci().getText().trim());
+        
+        DefaultTableModel tblmodel = new DefaultTableModel(new Object[][]{}, header);
+        
+        Object[] data = new Object[header.length];
+        
+        for (Petugas p : list) {
+            data[0] = p.getKode();
+            data[1] = p.getNama();
+            data[2] = p.getAlamat();
+            data[3] = p.getTelepon();
+         
+            tblmodel.addRow(data);
+            
+        }
+        
+        form.getTblpetugas().setModel(tblmodel);
     }
     
     
