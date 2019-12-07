@@ -35,7 +35,7 @@ public class DAO_Petugas implements Model_DAO<Petugas>{
     String UPDATE = "UPDATE petugas SET NmPetugas=?, AlamatPetugas=?, TelpPetugas=? WHERE KdPetugas=?";
     String DELETE = "DELETE FROM petugas WHERE KdPetugas=?";
     String SELECT = "SELECT * FROM petugas";
-    String CARI = "SELECT * FROM petugas WHERE NmPetugas LIKE ? OR AlamatPetugas LIKE ? OR KdPetugas LIKE ?";
+    String CARI = "SELECT * FROM petugas WHERE NmPetugas LIKE ? OR AlamatPetugas LIKE ? OR TelpPetugas LIKE ? OR KdPetugas LIKE ?";
     String COUNTER = "SELECT max(KdPetugas) as kode FROM petugas";
 
     @Override
@@ -164,6 +164,8 @@ public class DAO_Petugas implements Model_DAO<Petugas>{
             statement.setString(1, "%"+key+"%");
             statement.setString(2, "%"+key+"%");
             statement.setString(3, "%"+key+"%");
+            statement.setString(4, "%"+key+"%");
+
             
             ResultSet rs = statement.executeQuery();
             

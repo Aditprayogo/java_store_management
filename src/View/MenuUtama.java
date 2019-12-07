@@ -163,6 +163,7 @@ public class MenuUtama extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        MMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Icon/1 - user.png"))); // NOI18N
         MMenu.setText("File Master");
 
         MPelanggan.setText("Entri Data Pelanggan");
@@ -199,6 +200,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
         jMenuBar1.add(MMenu);
 
+        MTransaksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Icon/trans-add.png"))); // NOI18N
         MTransaksi.setText("Transaksi");
 
         TBuktiPesan.setText("Bukti Pesanan");
@@ -241,7 +243,7 @@ public class MenuUtama extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(167, Short.MAX_VALUE)
+                .addContainerGap(363, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(133, 133, 133))
         );
@@ -250,7 +252,7 @@ public class MenuUtama extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
 
         pack();

@@ -6,9 +6,14 @@
 package View;
 
 import Controller.Controller_Petugas;
+//import com.sun.imageio.plugins.png.RowFilter;
+import java.awt.event.KeyEvent;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -20,6 +25,7 @@ public class MPetugas extends javax.swing.JFrame {
      * Creates new form MPetugas
      */
     Controller_Petugas controller;
+    DefaultTableModel dm;
     
     public MPetugas() {
         initComponents();
@@ -50,6 +56,14 @@ public class MPetugas extends javax.swing.JFrame {
 
     public JTextField getTxttelp() {
         return txttelp;
+    }
+    
+    private void filter(String query) {
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dm);
+        tblpetugas.setRowSorter(tr);
+        
+        tr.setRowFilter(RowFilter.regexFilter(query));
+        
     }
 
     /**
@@ -137,6 +151,14 @@ public class MPetugas extends javax.swing.JFrame {
         txtkatakunci.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtkatakunciActionPerformed(evt);
+            }
+        });
+        txtkatakunci.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtkatakunciKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtkatakunciKeyReleased(evt);
             }
         });
 
@@ -241,6 +263,7 @@ public class MPetugas extends javax.swing.JFrame {
 
     private void txtkatakunciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtkatakunciActionPerformed
         // TODO add your handling code here:
+        controller.isiTableCari();
     }//GEN-LAST:event_txtkatakunciActionPerformed
 
     private void cmdsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdsimpanActionPerformed
@@ -280,7 +303,31 @@ public class MPetugas extends javax.swing.JFrame {
         // TODO add your handling code here:
         controller.isiTableCari();
         
+
+        
     }//GEN-LAST:event_txtkdpetugasKeyReleased
+
+    private void txtkatakunciKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtkatakunciKeyReleased
+        
+//        String query = txtkatakunci.getText().toLowerCase();
+//        
+//        filter(query);
+        controller.isiTableCari();
+        
+    }//GEN-LAST:event_txtkatakunciKeyReleased
+
+    private void txtkatakunciKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtkatakunciKeyPressed
+        // TODO add your handling code here:
+//        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+//            if (txtkdpetugas.getText().isEmpty()) {
+//                controller.reset();
+//            } else {
+//                controller.isiTable();
+//            }
+//        }
+    
+
+    }//GEN-LAST:event_txtkatakunciKeyPressed
 
     /**
      * @param args the command line arguments

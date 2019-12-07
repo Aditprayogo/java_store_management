@@ -18,6 +18,7 @@ import View.MPetugas;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -99,6 +100,7 @@ public class Controller_Petugas {
     }
     
     public void isiTableCari() {
+        
         list = model.getCari(form.getTxtkdpetugas().getText().trim());
         TableModel_Petugas tablePetugas = new TableModel_Petugas(list);
         form.getTblpetugas().setModel(tablePetugas);
