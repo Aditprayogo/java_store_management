@@ -174,6 +174,7 @@ public class Controller_Barang {
     }
     
     public void isiTableCari(){
+        
         list = model.getCari(form.getTxtkatakunci().getText().trim());
         
         DefaultTableModel tblmodel = new DefaultTableModel(new Object[][]{}, header);

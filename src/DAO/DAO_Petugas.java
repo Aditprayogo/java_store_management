@@ -163,6 +163,9 @@ public class DAO_Petugas implements Model_DAO<Petugas>{
             list = new ArrayList<>();
             statement = connection.prepareStatement(CARI);
             statement.setString(1, "%"+key+"%");
+            statement.setString(2, "%"+key+"%");
+            statement.setString(3, "%"+key+"%");
+            statement.setString(4, "%"+key+"%");
             ResultSet rs = statement.executeQuery();
             
             while (rs.next()) {                

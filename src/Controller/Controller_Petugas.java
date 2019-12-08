@@ -36,6 +36,7 @@ public class Controller_Petugas {
         this.form = form;
         model = new DAO_Petugas();
         list = model.getALl();
+        header = new String[] {"KODE PETUGAS", "NAMA PETUGAS", "ALAMAT", "TELEPON"};
     }
     
      public void reset(){
