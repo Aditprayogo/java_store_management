@@ -86,6 +86,7 @@ public class Controller_Barang {
     }
     
     public void reset(){
+        
         form.getCmbkategori().setSelectedIndex(0);
         form.getTxtnmbarang().setText("");
         form.getTxtkdbarang().setText("");
@@ -105,12 +106,18 @@ public class Controller_Barang {
     
     public void isiField(int row){
         
-        form.getCmbkategori().setSelectedItem(list.get(row).getKodekategori());
+        form.getCmbkategori().setSelectedItem(String.valueOf(list.get(row).getKodekategori()));
+        
         form.getTxtnmkategori().setText(list.get(row).getNamakategori());
+        
         form.getTxtkdbarang().setText(list.get(row).getKodebarang());
+        
         form.getTxtnmbarang().setText(list.get(row).getNamabarang());
-        form.getCmbsatuan().setSelectedItem(list.get(row).getSatuan());
+        
+        form.getCmbsatuan().setSelectedItem(String.valueOf(list.get(row).getSatuan()));
+        
         form.getTxtharga().setText(String.valueOf(list.get(row).getHarga()));
+        
         form.getTxtstock().setText(String.valueOf(list.get(row).getStock()));
         
     }
@@ -118,12 +125,19 @@ public class Controller_Barang {
     public void insert() {
         
         Barang b = new Barang();
+        
         b.setKodebarang(form.getTxtkdbarang().getText());
+        
         b.setNamabarang(form.getTxtnmbarang().getText());
+        
         b.setSatuan(Integer.parseInt(form.getCmbsatuan().getSelectedItem().toString()));
+        
         b.setHarga(Integer.parseInt(form.getTxtharga().getText()));
+        
         b.setStock(Integer.parseInt(form.getTxtstock().getText()));
+        
         b.setKodekategori(Integer.parseInt(form.getCmbkategori().getSelectedItem().toString()));
+        
         model.insert(b);
         
     }
@@ -133,10 +147,15 @@ public class Controller_Barang {
         Barang b = new Barang();
        
         b.setNamabarang(form.getTxtnmbarang().getText());
-        b.setSatuan(Integer.parseInt(form.getCmbsatuan().toString()));
+        
         b.setSatuan(Integer.parseInt(form.getCmbsatuan().getSelectedItem().toString()));
+        
+        b.setHarga(Integer.parseInt(form.getTxtharga().getText()));
+        
         b.setStock(Integer.parseInt(form.getTxtstock().getText()));
+        
         b.setKodekategori(Integer.parseInt(form.getCmbkategori().getSelectedItem().toString()));
+        
         b.setKodebarang(form.getTxtkdbarang().getText());
         
         model.update(b);
