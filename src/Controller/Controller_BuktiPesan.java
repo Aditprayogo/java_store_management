@@ -215,7 +215,7 @@ public class Controller_BuktiPesan {
         //jumlah baris berisi data
         if (jmlbaris != 0) {
             
-            form.getTxttotal().setText("Rp."+ konversi.format(Integer.parseInt(String.valueOf(form))));
+            form.getTxttotal().setText("Rp. "+ konversi.format(Integer.parseInt(String.valueOf(total))));
             
             
         } else {
@@ -299,7 +299,7 @@ public class Controller_BuktiPesan {
     public void isicombobarang() {
         form.getCmbbarang().removeAllItems();
         form.getCmbbarang().addItem("--PILIH--");
-        for (BuktiPesan b : model.isicombobarang(Integer.parseInt(form.getTxtkdbarang().getText()))) {
+        for (BuktiPesan b : model.isicombobarang(Integer.parseInt(form.getTxtkdkategori().getText()))) {
             
             form.getCmbbarang().addItem(b.getNamabarang());
             
@@ -327,6 +327,67 @@ public class Controller_BuktiPesan {
                 
             }
         }
+    }
+    
+    //mentampilkan data barang berdasarkan text kode barang
+    public void tampilnmbarang(){
+        
+        for (BuktiPesan b : model.getnmbarang(Integer.parseInt(form.getTxtkdbarang().getText()))) {
+            
+            form.getCmbbarang().setSelectedItem(b.getNamabarang());
+            form.getCmbkategori().setSelectedItem(b.getNamakategori());
+            form.getTxtkdkategori().setText(String.valueOf(b.getKodekategori()));
+            form.getTxtharga().setText(String.valueOf(b.getHarga()));
+            form.getTxtstok().setText(String.valueOf(b.getStok()));
+            
+            if (b.getKodebarang().equals("")) {
+                
+                form.getTxtkdbarang().setText("");
+                
+            }
+            
+        }
+        
+        
+    }
+    
+    public void simpan_transaksi(){
+        BuktiPesan b = new BuktiPesan();
+        
+        b.setNobp(form.getTxtnobp().getText());
+        b.setTglbp(form.getTxttgbp().getText());
+        b.setKodeplg(Integer.parseInt(form.getTxtkdplg().getText()));
+        model.insert(b);
+    }
+    
+    public void simpan_detiltransaksi(){
+        
+        int jmlbaris = tblmodel.getRowCount();
+        int simpan = 0;
+        int i = 0;
+        
+        for ( i = 0; i < 10; i++) {
+            
+            BuktiPesan b = new BuktiPesan();
+            
+            b.setNobp(form.getTxtnobp().getText());
+            b.setKodebarang(tblmodel.getValueAt(i, 2).toString());
+            b.setHarga(Integer.parseInt(tblmodel.getValueAt(i, 4).toString()));
+            b.setQty(Integer.parseInt(tblmodel.getValueAt(i, 5).toString()));
+            model.insert_detiltransaksi(b);
+            model.update_stock(b);
+            simpan = simpan + 1;
+            
+        }
+        
+        if (simpan > 0 ) {
+            
+            JOptionPane.showMessageDialog(null, "detil belanja berhasil di simpan dan stok barang berhasil di ubah");
+            
+        }
+        
+        
+        
     }
     
     

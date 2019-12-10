@@ -5,8 +5,11 @@
  */
 package View;
 
+import Controller.Controller_BuktiPesan;
+import java.awt.event.KeyEvent;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -19,9 +22,14 @@ public class TBuktiPesan extends javax.swing.JFrame {
     /**
      * Creates new form TBuktiPesan
      */
+    
+    Controller_BuktiPesan controller;
+    
     public TBuktiPesan() {
         initComponents();
         setLocationRelativeTo(this);
+        controller = new Controller_BuktiPesan(this);
+        controller.reset();
         
     }
 
@@ -198,8 +206,19 @@ public class TBuktiPesan extends javax.swing.JFrame {
         jLabel4.setText("Nama Pelanggan :");
 
         cmdpelanggan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmdpelanggan.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmdpelangganItemStateChanged(evt);
+            }
+        });
 
         jLabel5.setText("Kode :");
+
+        txtkdplg.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtkdplgKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -233,22 +252,76 @@ public class TBuktiPesan extends javax.swing.JFrame {
         jLabel6.setText("Nama Kategori :");
 
         cmbkategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbkategori.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbkategoriItemStateChanged(evt);
+            }
+        });
 
         jLabel7.setText("Nama Barang :");
 
         cmbbarang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbbarang.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbbarangItemStateChanged(evt);
+            }
+        });
+        cmbbarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbbarangActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Kode :");
 
         jLabel9.setText("Kode :");
 
+        txtkdbarang.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtkdbarangKeyPressed(evt);
+            }
+        });
+
+        txtkdkategori.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtkdkategoriKeyPressed(evt);
+            }
+        });
+
         jLabel10.setText("Harga :");
+
+        txtharga.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txthargaKeyPressed(evt);
+            }
+        });
 
         jLabel11.setText("Stok :");
 
         jLabel12.setText("Qty :");
 
+        txtqty.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtqtyKeyPressed(evt);
+            }
+        });
+
         cmdadd.setText("Add");
+        cmdadd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cmdaddMouseClicked(evt);
+            }
+        });
+        cmdadd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdaddActionPerformed(evt);
+            }
+        });
+        cmdadd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cmdaddKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -331,13 +404,38 @@ public class TBuktiPesan extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbldetil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbldetilMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbldetil);
 
         jPanel5.setBackground(new java.awt.Color(51, 51, 255));
 
         cmdsimpan.setText("Simpan");
+        cmdsimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdsimpanActionPerformed(evt);
+            }
+        });
+        cmdsimpan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cmdsimpanKeyPressed(evt);
+            }
+        });
 
         cmdbatal.setText("Batal");
+        cmdbatal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdbatalActionPerformed(evt);
+            }
+        });
+        cmdbatal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cmdbatalKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -414,6 +512,175 @@ public class TBuktiPesan extends javax.swing.JFrame {
     private void txtnobpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnobpActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnobpActionPerformed
+
+    private void cmdpelangganItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmdpelangganItemStateChanged
+        // TODO add your handling code here:
+        if (getCmdpelanggan().getSelectedIndex()> 0) {
+            
+            controller.tampilkdplg();
+            txtkdkategori.requestFocus();
+            
+        }
+    }//GEN-LAST:event_cmdpelangganItemStateChanged
+
+    private void cmbkategoriItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbkategoriItemStateChanged
+        // TODO add your handling code here:
+         if (getCmbkategori().getSelectedIndex()> 0) {
+            
+            controller.reset2();
+            controller.tampilkdkategori();
+            controller.isicombobarang();
+            
+        }
+    }//GEN-LAST:event_cmbkategoriItemStateChanged
+
+    private void cmbbarangItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbbarangItemStateChanged
+        // TODO add your handling code here:
+        if (getCmbbarang().getSelectedIndex()> 0) {
+            
+            controller.tampilkdbarang();
+            txtqty.requestFocus();
+            
+        }
+    }//GEN-LAST:event_cmbbarangItemStateChanged
+
+    private void tbldetilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbldetilMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            
+            controller.resetrow();
+            controller.hitung_grandtotal();
+            
+        } else {
+            
+            controller.isiField(tbldetil.getSelectedRow());
+            
+        }
+    }//GEN-LAST:event_tbldetilMouseClicked
+
+    private void cmdaddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmdaddMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmdaddMouseClicked
+
+    private void cmdaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdaddActionPerformed
+        // TODO add your handling code here:
+        controller.isitable();
+        controller.hitung_grandtotal();
+        controller.reset3();
+    }//GEN-LAST:event_cmdaddActionPerformed
+
+    private void cmdaddKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmdaddKeyPressed
+        // TODO add your handling code here:
+        controller.isitable();
+        controller.hitung_grandtotal();
+        controller.reset3();
+    }//GEN-LAST:event_cmdaddKeyPressed
+
+    private void cmdbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdbatalActionPerformed
+        // TODO add your handling code here:
+        controller.reset();
+    }//GEN-LAST:event_cmdbatalActionPerformed
+
+    private void cmdbatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmdbatalKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            controller.reset();
+        }
+    }//GEN-LAST:event_cmdbatalKeyPressed
+
+    private void cmdsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdsimpanActionPerformed
+        // TODO add your handling code here:
+        if ((!getTxtnobp().getText().isEmpty()) && (!getTxtkdplg().getText().isEmpty()) && 
+                (getTbldetil().getRowCount() != 0)) {
+            
+            controller.simpan_transaksi();
+            controller.simpan_detiltransaksi();
+            controller.reset();
+            
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "No transaksi atau detil belanja tidak boleh kosong");
+        }
+    }//GEN-LAST:event_cmdsimpanActionPerformed
+
+    private void cmdsimpanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmdsimpanKeyPressed
+        // TODO add your handling code here:
+        if ((!getTxtnobp().getText().isEmpty()) && (!getTxtkdplg().getText().isEmpty()) && 
+                (getTbldetil().getRowCount() != 0)) {
+            
+            controller.simpan_transaksi();
+            controller.simpan_detiltransaksi();
+            controller.reset();
+            
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "No transaksi atau detil belanja tidak boleh kosong");
+        }
+    }//GEN-LAST:event_cmdsimpanKeyPressed
+
+    private void txtkdplgKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtkdplgKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            
+            controller.tampilnmplg();
+            txtkdkategori.requestFocus();
+            
+        }
+    }//GEN-LAST:event_txtkdplgKeyPressed
+
+    private void txtkdkategoriKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtkdkategoriKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            
+            txtkdbarang.setText("");
+            txtharga.setText("");
+            txtstok.setText("");
+            txtqty.setText("");
+            controller.tampilnmkategori();
+            controller.isicombokategori();
+            txtkdbarang.requestFocus();
+            
+        }
+    }//GEN-LAST:event_txtkdkategoriKeyPressed
+
+    private void txtkdbarangKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtkdbarangKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            
+            if (getTxtkdbarang().getText().trim().isEmpty()) {
+                
+                txtharga.setText("");
+                txtstok.setText("");
+                txtqty.setText("");
+                controller.isicombobarang();
+                
+                
+            }
+            
+        }
+    }//GEN-LAST:event_txtkdbarangKeyPressed
+
+    private void txtqtyKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtqtyKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            
+            cmdadd.requestFocus();
+            
+        }
+    }//GEN-LAST:event_txtqtyKeyPressed
+
+    private void txthargaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txthargaKeyPressed
+        // TODO add your handling code here:
+          if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            
+            txtqty.requestFocus();
+            
+        }
+    }//GEN-LAST:event_txthargaKeyPressed
+
+    private void cmbbarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbbarangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbbarangActionPerformed
 
     /**
      * @param args the command line arguments

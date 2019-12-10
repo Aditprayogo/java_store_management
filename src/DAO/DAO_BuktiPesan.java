@@ -382,8 +382,8 @@ public class DAO_BuktiPesan implements Model_DAO<BuktiPesan>{
         
         try {
             
-            list = new ArrayList<BuktiPesan>();
-            String TAMPILBARANG = "SELECT * FROM barang where KdBrg=? order by NmBrg";
+            list = new ArrayList<>();
+            String TAMPILBARANG = "SELECT * FROM barang where KdKategori=? order by NmBrg";
             statement = connection.prepareStatement(TAMPILBARANG);
             statement.setInt(1, kode);
             ResultSet rs = statement.executeQuery();
