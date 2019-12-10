@@ -18,6 +18,10 @@ public class BuktiPesan {
     private String namakategori;
     private String kodebarang;
     private String namabarang;
+    private Integer harga;
+    private Integer qty;
+    private Integer stok;
+    private Integer total;
 
     public String getNobp() {
         return nobp;
@@ -114,10 +118,7 @@ public class BuktiPesan {
     public void setTotal(Integer total) {
         this.total = total;
     }
-    private Integer harga;
-    private Integer qty;
-    private Integer stok;
-    private Integer total;
+    
     
     
 }
