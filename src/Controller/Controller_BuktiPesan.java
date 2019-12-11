@@ -366,7 +366,7 @@ public class Controller_BuktiPesan {
         int simpan = 0;
         int i = 0;
         
-        for ( i = 0; i < 10; i++) {
+        for ( i = 0; i < jmlbaris; i++) {
             
             BuktiPesan b = new BuktiPesan();
             

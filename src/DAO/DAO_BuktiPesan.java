@@ -101,7 +101,7 @@ public class DAO_BuktiPesan implements Model_DAO<BuktiPesan>{
                 
                 if (rs.getInt("stok") < 0) {
                     
-                    JOptionPane.showMessageDialog(null, "Stock Kode Barang" + object.getKodebarang() + "Kosong!");
+                    JOptionPane.showMessageDialog(null, "Stock Kode Barang : " + object.getKodebarang() + "Kosong!");
                     stok_akhir = 0;
 
                 } else {
@@ -110,10 +110,11 @@ public class DAO_BuktiPesan implements Model_DAO<BuktiPesan>{
                     stok_akhir = rs.getInt("stok") - object.getQty();
                     
                     //update stok barang ke dalam table barang
+                    
                     PreparedStatement statement2;
-                    String UPDATESTOK = "UPDATE barang set Stok=?, where KdBrg=?";
+                    String UPDATESTOK = "UPDATE barang set Stok=? where KdBrg=?";
                     statement2 = connection.prepareStatement(UPDATESTOK);
-                    statement2.setInt(1, object.getStok());
+                    statement2.setInt(1, stok_akhir);
                     statement2.setString(2, object.getKodebarang());
                     statement2.executeUpdate();
                     
@@ -150,29 +151,29 @@ public class DAO_BuktiPesan implements Model_DAO<BuktiPesan>{
                     
                     if (rs2.getInt("panjang") == 1) { // jika jumlah digitnya adalah 1
                         
-                        urutan = "BP" + "0000" + nomor_berikutnya;
+                        urutan = "01" + "0000" + nomor_berikutnya;
                         
                     } else if (rs2.getInt("panjang") == 2) { // jika jumlah digitnya adalah 2
                         
-                        urutan = "BP" + "000" + nomor_berikutnya;
+                        urutan = "01" + "000" + nomor_berikutnya;
                         
                     } else if (rs2.getInt("panjang")==3){
                         
-                        urutan = "BP" + "00" + nomor_berikutnya;
+                        urutan = "01" + "00" + nomor_berikutnya;
                         
                     } else if (rs2.getInt("panjang")==4){
                         
-                        urutan = "BP" + "0" + nomor_berikutnya;
+                        urutan = "01" + "0" + nomor_berikutnya;
                         
                     } else if (rs2.getInt("panjang") == 5) {
                         
-                        urutan = "BP" + nomor_berikutnya;
+                        urutan = "01" + nomor_berikutnya;
                     }
                     
                     
                 } else { // jika nomor transaksi belum ada
                     
-                    urutan = "BP" + "00001";
+                    urutan = "01" + "00001";
                     
                 }
                 
