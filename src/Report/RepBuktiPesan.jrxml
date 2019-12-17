@@ -47,14 +47,17 @@
 	<subDataset name="Table Dataset 1"/>
 	<subDataset name="dataset1"/>
 	<subDataset name="Table Dataset 2"/>
-	<queryString language="SQL">
+	<parameter name="nops" class="java.lang.String"/>
+	<queryString>
 		<![CDATA[select a.*,b.*,c.*,d.*
 from pelanggan a,buktipesan b,detilpesan c,barang d
 where a.kdplg=b.kdplg
 and c.nopesan=c.nopesan
 and c.kdbrg=d.kdbrg
+and b.nopesan=$P{nops}
 order by nmbrg]]>
 	</queryString>
+	<field name="KdPlg" class="java.lang.Integer"/>
 	<field name="NmPlg" class="java.lang.String"/>
 	<field name="AlamatPlg" class="java.lang.String"/>
 	<field name="TelpPlg" class="java.lang.String"/>
@@ -65,6 +68,15 @@ order by nmbrg]]>
 	<field name="JmlPesan" class="java.lang.Integer"/>
 	<field name="NmBrg" class="java.lang.String"/>
 	<field name="Satuan" class="java.lang.Integer"/>
+	<field name="HargaBrg" class="java.lang.Integer"/>
+	<field name="Stok" class="java.lang.Integer"/>
+	<field name="KdKategori" class="java.lang.Integer"/>
+	<variable name="total" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{JmlPesan} * $F{HrgPesan}]]></variableExpression>
+	</variable>
+	<variable name="grandtotal" class="java.lang.String">
+		<variableExpression><![CDATA[$V{total}]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -325,6 +337,11 @@ order by nmbrg]]>
 					<font size="12" isBold="false"/>
 				</textElement>
 			</textField>
+			<textField>
+				<reportElement x="561" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
@@ -350,7 +367,7 @@ order by nmbrg]]>
 				<textFieldExpression class="java.lang.String"><![CDATA[$V{nama}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="344" y="11" width="148" height="20"/>
+				<reportElement x="413" y="11" width="148" height="20"/>
 				<textElement textAlignment="Right">
 					<font size="12"/>
 				</textElement>
@@ -376,6 +393,11 @@ order by nmbrg]]>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[Terimakasih telah belanja di toko kami]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="586" y="11" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{grandtotal}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>
